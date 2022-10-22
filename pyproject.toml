@@ -1,13 +1,13 @@
 [tool.poetry]
-name = "sample-components"
-version = "0.1.0"
+name = "sample_components"
+version = "0.0.1"
 description = ""
 authors = ["Aritra Biswas <40533894+pandalearnstocode@users.noreply.github.com>"]
 readme = "README.md"
 packages = [{include = "sample_components"}]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.8"
 
 
 [build-system]
