@@ -32,8 +32,8 @@ jobs:
       run: poetry install --no-interaction --no-root
     - name: Run test suite here
       run: |
-        coverage run -m pytest -q tests
-        coverage xml
+        poetry run coverage run -m pytest -q tests
+        poetry run coverage xml
         mkdir coverage
         move coverage.xml coverage/coverage.xml
     - name: Publish Sonar Cloud Result

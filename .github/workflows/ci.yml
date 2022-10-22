@@ -39,8 +39,8 @@ jobs:
       run: poetry install --no-interaction --no-root
     - name: Run test suite here
       run: |
-        coverage run -m pytest -q tests
-        coverage xml
+        poetry run coverage run -m pytest -q tests
+        poetry run coverage xml
     - uses: actions/upload-artifact@v3
       with:
         name: coverage
