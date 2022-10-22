@@ -86,19 +86,61 @@ jobs:
 
 ### __Components:__
 
-#### __Fetch code__
+#### __Git checkout__
 
 ```yml
-
-
+- uses: actions/checkout@v3
+  with:
+    fetch-depth: 0
 ```
 
 * [Reference](https://github.com/actions/checkout)
 
+#### __Setup python__
+
+```yml
+- uses: actions/setup-python@v4
+  with:
+    python-version: '3.10'
+```
+
+* [Reference](https://github.com/actions/setup-python)
+
 #### __Install Poetry Action__
 
 ```yml
-
+- name: Install Poetry
+  uses: snok/install-poetry@v1
+  with:
+    virtualenvs-create: true
+    virtualenvs-in-project: true
+    installer-parallel: true
 ```
 
 * [Reference](https://github.com/marketplace/actions/install-poetry-action)
+
+#### __Cache:__
+
+```yml
+- name: Load cached venv
+  id: cached-poetry-dependencies
+  uses: actions/cache@v3
+  with:
+    path: .venv
+    key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+```
+
+#### __Install dependencies:__
+
+```yml
+- name: Install dependencies
+  if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+  run: poetry install --no-interaction --no-root
+```
+
+#### __Install project__
+
+```yml
+- name: Install project
+  run: poetry install --no-interaction
+```
