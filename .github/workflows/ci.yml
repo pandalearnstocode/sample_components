@@ -2,6 +2,7 @@ name: CI
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened]
     branches:
       - init
 
@@ -132,5 +133,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: [test_suite, linting_checks, formatting_checks, security_checks]
     steps:
+    - uses: actions/download-artifact@v3
+      with:
+        name: test_coverage_report
+        path: coverage.xml
+    - name: Publish Sonar Cloud Result
+      uses: SonarSource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
     - name: Send notifications here
       run: echo "Send notifications here."
