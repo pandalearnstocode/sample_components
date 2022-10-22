@@ -19,8 +19,6 @@ jobs:
         workflow: ci.yml
         workflow_conclusion: success
         branch: init
-        event: push
-        repo: ${{ github.repository }}
     - name: Publish Sonar Cloud Result
       uses: SonarSource/sonarcloud-github-action@master
       env:
