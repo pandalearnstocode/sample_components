@@ -201,4 +201,5 @@ python --version
 poetry install
 poetry add pytest
 poetry run pytest
+poetry build
 ```
