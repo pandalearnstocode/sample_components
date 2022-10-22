@@ -1,3 +1,10 @@
+## __Links__
+
+* [Monorepo](https://github.com/pandalearnstocode/sample_components)
+* [Sub component 1](https://github.com/pandalearnstocode/sample_subcomponents_1)
+* [Sub component 2](https://github.com/pandalearnstocode/sample_subcomponents_2)
+
+## __Setup__
 ```bash
 git init
 git add README.md
@@ -6,6 +13,10 @@ git branch -M init
 git remote add origin https://github.com/pandalearnstocode/sample_components.git
 git push -u origin init
 ```
+## __GitHub actions:__
+
+### __High level overview:__
+
 
 ```yml
 name: CI
@@ -72,3 +83,22 @@ jobs:
     - name: Notify users
       run: echo "step 1"
 ```
+
+### __Components:__
+
+#### __Fetch code__
+
+```yml
+
+
+```
+
+* [Reference](https://github.com/actions/checkout)
+
+#### __Install Poetry Action__
+
+```yml
+
+```
+
+* [Reference](https://github.com/marketplace/actions/install-poetry-action)
