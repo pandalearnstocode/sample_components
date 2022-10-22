@@ -18,6 +18,7 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         workflow: ci.yml
         name: test_coverage_report
+        path: test_coverage_report/coverage.xml
     - name: Display structure of downloaded files
       run: ls -R
     - name: Publish Sonar Cloud Result
