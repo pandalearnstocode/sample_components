@@ -178,4 +178,7 @@ jobs:
 curl -sSL https://install.python-poetry.org | python3 -
 poetry --version
 poetry new sample_components
+poetry env use python3.8
+poetry shell
+python --version
 ```
