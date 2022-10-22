@@ -210,7 +210,6 @@ poetry remove pytest
 
 ##### __Check code coverage using CLI__
 
-
 ```bash
 poetry run pytest --cov=sample_components tests/
 ```
