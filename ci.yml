@@ -37,7 +37,16 @@ jobs:
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: poetry install --no-interaction --no-root
     - name: Run test suite here
-      run: echo "Run test suite here."
+      run: poetry run pytest --cov=tests/ --cov-report xml:coverage.xml
+    - uses: actions/upload-artifact@v3
+      with:
+        name: test_coverage_report
+        path: coverage.xml
+        retention-days: 5
+    - name: Pytest coverage comment
+      uses: MishaKav/pytest-coverage-comment@main
+      with:
+        pytest-xml-coverage-path: ./coverage.xml
   linting_checks:
     runs-on: ubuntu-latest
     needs: pr_validator
