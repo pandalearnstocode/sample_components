@@ -9,13 +9,11 @@ git push -u origin init
 
 ```yml
 name: CI
-
 on:
   push:
     branches:
       - init
   workflow_dispatch:
-
 jobs:
   pr_validator:
     runs-on: ubuntu-latest
@@ -52,18 +50,15 @@ jobs:
     steps:
     - name: Notification
       run: echo "step 1"
-
 ```
 
 
 ```yml
 name: Release
-
 on:
   pull_request:
     branches:
       - init
-
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -76,5 +71,4 @@ jobs:
     steps:
     - name: Notify users
       run: echo "step 1"
-
 ```
