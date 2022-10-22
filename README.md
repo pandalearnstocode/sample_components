@@ -196,3 +196,9 @@ python --version
 
 2 directories, 4 files
 ```
+
+```bash
+poetry install
+poetry add pytest
+poetry run pytest
+```
