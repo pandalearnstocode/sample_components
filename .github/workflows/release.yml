@@ -1,0 +1,19 @@
+name: Release
+
+on:
+  pull_request:
+    branches:
+      - init
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Create release
+      run: echo "step 1"
+  notify:
+    runs-on: ubuntu-latest
+    needs: release
+    steps:
+    - name: Notify users
+      run: echo "step 1"
