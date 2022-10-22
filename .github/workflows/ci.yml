@@ -38,10 +38,12 @@ jobs:
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: poetry install --no-interaction --no-root
     - name: Run test suite here
-      run: poetry run pytest --cov=sample_components tests/ --cov-report xml:coverage.xml
+      run: |
+        coverage run -m pytest -q tests
+        coverage xml
     - uses: actions/upload-artifact@v3
       with:
-        name: test_coverage_report
+        name: coverage
         path: coverage.xml
         retention-days: 5
     - name: Pytest coverage comment

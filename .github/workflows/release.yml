@@ -31,7 +31,11 @@ jobs:
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: poetry install --no-interaction --no-root
     - name: Run test suite here
-      run: poetry run pytest --cov=sample_components tests/ --cov-report xml:test_coverage_report/coverage.xml
+      run: |
+        coverage run -m pytest -q tests
+        coverage xml
+        mkdir coverage
+        move coverage.xml coverage/coverage.xml
     - name: Publish Sonar Cloud Result
       uses: SonarSource/sonarcloud-github-action@master
       env:
