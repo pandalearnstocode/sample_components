@@ -35,7 +35,7 @@ jobs:
         poetry run coverage run -m pytest -q tests
         poetry run coverage xml
         mkdir coverage
-        move coverage.xml coverage/coverage.xml
+        cp coverage.xml coverage/coverage.xml
     - name: Publish Sonar Cloud Result
       uses: SonarSource/sonarcloud-github-action@master
       env:
