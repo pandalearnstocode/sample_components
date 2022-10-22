@@ -12,13 +12,12 @@ jobs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
-    - name: Download artifact
-      id: download-artifact
+    - name: Download Artifacts
       uses: dawidd6/action-download-artifact@v2
       with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
         workflow: ci.yml
-        workflow_conclusion: success
-        branch: init
+        name: test_coverage_report
     - name: Publish Sonar Cloud Result
       uses: SonarSource/sonarcloud-github-action@master
       env:
