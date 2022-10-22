@@ -182,3 +182,17 @@ poetry env use python3.8
 poetry shell
 python --version
 ```
+
+### __Directory structure__
+
+```bash
+.
+├── pyproject.toml
+├── README.md
+├── sample_components
+│   └── __init__.py
+└── tests
+    └── __init__.py
+
+2 directories, 4 files
+```
