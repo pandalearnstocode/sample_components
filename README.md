@@ -144,3 +144,29 @@ jobs:
 - name: Install project
   run: poetry install --no-interaction
 ```
+
+#### __Common setup block:__
+
+```yml
+- uses: actions/checkout@v3
+  with:
+    fetch-depth: 0
+- uses: actions/setup-python@v4
+  with:
+    python-version: '3.8'
+- name: Install Poetry
+  uses: snok/install-poetry@v1
+  with:
+    virtualenvs-create: true
+    virtualenvs-in-project: true
+    installer-parallel: true
+- name: Load cached venv
+  id: cached-poetry-dependencies
+  uses: actions/cache@v3
+  with:
+    path: .venv
+    key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+- name: Install dependencies
+  if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+  run: poetry install --no-interaction --no-root
+```
