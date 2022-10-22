@@ -19,8 +19,6 @@ jobs:
         workflow: ci.yml
         name: test_coverage_report
         path: test_coverage_report
-    - name: Display structure of downloaded files
-      run: ls -R
     - name: Publish Sonar Cloud Result
       uses: SonarSource/sonarcloud-github-action@master
       env:
