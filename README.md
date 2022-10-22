@@ -60,7 +60,7 @@ jobs:
 name: Release
 
 on:
-  push:
+  pull_request:
     branches:
       - init
 
@@ -76,4 +76,5 @@ jobs:
     steps:
     - name: Notify users
       run: echo "step 1"
+
 ```
