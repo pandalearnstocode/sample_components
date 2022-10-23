@@ -172,6 +172,17 @@ jobs:
   run: poetry install --no-interaction --no-root
 ```
 
+#### __Formatting block__
+
+```yml
+- uses: psf/black@stable
+  with:
+    options: "--check --verbose"
+    src: "./sample_components"
+    jupyter: true
+    version: "21.5b1"
+```
+
 
 ## __Install poetry__
 
