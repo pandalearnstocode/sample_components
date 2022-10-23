@@ -211,7 +211,7 @@ python --version
 
 ```bash
 poetry install
-poetry add pytest
+poetry add typer flake8 loguru mkdocstrings python-semantic-release pre-commit pylint pyupgrade safety darglint mypy-extensions mkdocs-material mkdocstrings-python mike mypy isort black pytest coverage
 poetry run pytest
 poetry build
 poetry remove pytest
