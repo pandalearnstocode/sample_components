@@ -224,3 +224,8 @@ poetry remove pytest
 ```bash
 poetry run pytest --cov=sample_components tests/
 ```
+
+
+```bash
+docker build -t sample_components .
+docker run --rm -it --entrypoint bash sample_components
