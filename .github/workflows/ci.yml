@@ -102,6 +102,12 @@ jobs:
     - name: Install dependencies
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: poetry install --no-interaction --no-root
+    - uses: psf/black@stable
+      with:
+        options: "--check --verbose"
+        src: "./sample_components"
+        jupyter: true
+        version: "21.5b1"
     - name: Run formatting checks here
       run: echo "Run formatting checks here."
   security_checks:
