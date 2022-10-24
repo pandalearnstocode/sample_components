@@ -270,11 +270,11 @@ jobs:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
         image: your/image-to-test
-        args: --file=Dockerfile --sarif-file-output=snyk-docker.sarif
+        args: --file=Dockerfile
     - name: Upload result to GitHub Code Scanning
       uses: github/codeql-action/upload-sarif@v2
       with:
-        sarif_file: snyk-docker.sarif
+        sarif_file: snyk.sarif
     - name: Run Snyk to check for vulnerabilities
       uses: snyk/actions/python-3.8@master
       continue-on-error: true
