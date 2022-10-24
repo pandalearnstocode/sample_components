@@ -13,6 +13,7 @@ git branch -M init
 git remote add origin https://github.com/pandalearnstocode/sample_components.git
 git push -u origin init
 ```
+
 ## __GitHub actions:__
 
 ### __High level overview:__
