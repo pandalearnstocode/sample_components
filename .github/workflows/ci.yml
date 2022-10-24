@@ -89,6 +89,22 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         path: pylint.log
+    - name: Run flake8 checks here
+      run: |
+        poetry run flake8 --exit-zero --output-file=flake8.txt sample_components tests
+    - uses: actions/upload-artifact@v1
+      with:
+        name: flake8_reports
+        path: flake8.txt
+    - uses: actions/download-artifact@v1
+      with:
+        name: flake8_reports
+    - name: comment PR
+      uses: machine-learning-apps/pr-comment@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        path: flake8.txt
   formatting_checks:
     runs-on: ubuntu-latest
     needs: pr_validator
