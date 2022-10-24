@@ -73,8 +73,18 @@ jobs:
     - name: Install dependencies
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: poetry install --no-interaction --no-root
-    - name: Run lint checks here
-      run: echo "Run lint checks here."
+    - name: Run pylint checks here
+      run: |
+        poetry run pylint $(git ls-files '*.py') -r n --msg-template="{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}" --exit-zero > pylint.log
+        PYLINT_LOG=$(cat pylint.log)
+        echo "$PYLINT_LOG" >> $GITHUB_ENV
+    - name: Post result to PR
+      uses: mshick/add-pr-comment@v1
+      with:
+        message: ${{ env.PYLINT_LOG }}
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token-user-login: 'github-actions[bot]'
+        allow-repeats: false
   formatting_checks:
     runs-on: ubuntu-latest
     needs: pr_validator
