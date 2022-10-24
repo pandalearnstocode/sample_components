@@ -234,14 +234,12 @@ docker run --rm -it --entrypoint bash sample_components
 
 # TODO
 
-* Build makefile
 * Build CLI app
 * Integrate Synk and others
 * Mkdocs
 * DVC + CML
 * Model Trigger GH Actions
 * SemVer
-* Templates
 * Dependabots, security
 * devontainer + remote + codespaces
 * Extensions and settings
