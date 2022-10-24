@@ -173,7 +173,7 @@ jobs:
     - name: Install dependencies
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: poetry install --no-interaction --no-root
-    - name: Run pylint checks here
+    - name: Run bandit checks here
       run: |
         poetry run bandit --exit-zero --format json --output bandit-report.json -r sample_components tests
         [ -s bandit-report.json ] || echo '{"error":"No bandit error found.""}' > bandit-report.json
