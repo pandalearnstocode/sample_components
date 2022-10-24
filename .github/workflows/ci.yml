@@ -153,7 +153,7 @@ jobs:
         use-isort: true
         use-mypy: true
         use-pycodestyle: false
-        use-pydocstyle: false
+        use-pydocstyle: true
         use-pylint: true
         use-flake8: true
         use-vulture: true
