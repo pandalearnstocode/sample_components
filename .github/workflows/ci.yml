@@ -183,6 +183,19 @@ jobs:
         fetch-depth: 0
         repository: ${{ github.event.pull_request.head.repo.full_name }}
         ref: ${{ github.event.pull_request.head.ref }}
+    - name: Run Snyk to check for vulnerabilities
+      uses: snyk/actions/python-3.8@master
+      continue-on-error: true
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        args: --sarif-file-output=snyk.sarif --file=poetry.lock --package-manager=poetry
+    - name: Upload result to GitHub Code Scanning
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: snyk.sarif
+    - name: Run formatting checks here
+      run: echo "Run formatting checks here."
     - uses: actions/setup-python@v4
       with:
         python-version: '3.8'
@@ -215,19 +228,6 @@ jobs:
         src: "./sample_components"
         jupyter: true
         version: "22.10"
-    - name: Run Snyk to check for vulnerabilities
-      uses: snyk/actions/python-3.8@master
-      continue-on-error: true
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      with:
-        args: --sarif-file-output=snyk.sarif --file=poetry.lock --package-manager=poetry
-    - name: Upload result to GitHub Code Scanning
-      uses: github/codeql-action/upload-sarif@v2
-      with:
-        sarif_file: snyk.sarif
-    - name: Run formatting checks here
-      run: echo "Run formatting checks here."
   security_checks:
     runs-on: ubuntu-latest
     permissions:
