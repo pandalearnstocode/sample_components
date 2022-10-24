@@ -242,4 +242,3 @@ docker run --rm -it --entrypoint bash sample_components
 * Dependabots, security
 * devontainer + remote + codespaces
 * Extensions and settings
-
