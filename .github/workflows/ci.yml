@@ -230,11 +230,11 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         path: bandit-report.json
-    -name: Check safety & bandit
-    run: |
-      poetry check
-      poetry run safety check --full-report
-      poetry run bandit -ll --recursive sample_components tests
+    - name: Check safety & bandit
+      run: |
+        poetry check
+        poetry run safety check --full-report
+        poetry run bandit -ll --recursive sample_components tests
   notify:
     runs-on: ubuntu-latest
     needs: [test_suite, linting_checks, formatting_checks, security_checks]
