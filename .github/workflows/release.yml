@@ -74,6 +74,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         CONFIG_FILE: mkdocs.yml
         EXTRA_PACKAGES: build-base gcc wget git libffi-dev musl-dev python3-dev openssl-dev cargo
+        REQUIREMENTS: requirements.txt
   notify:
     runs-on: ubuntu-latest
     needs: release
