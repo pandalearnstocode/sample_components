@@ -9,8 +9,24 @@ def hello(name: str) -> str:
     Returns:
         str: greeting message
     Examples:
-        .. code:: python
-            >>> hello("Roman")
-            'Hello Roman!'
+        >>> hello("Roman")
+        'Hello Roman!'
     """
     return f"Hello {name}!"
+
+
+def sample_docstring(name: str) -> str:
+    """This is a sample docstring
+
+    Args:
+        name (str): this is the arg which says who has created this docstring
+
+    Returns:
+        str: this is echo who has created the docstring
+
+
+    Examples:
+        >>> sample_docstring("Roman")
+        'This is a docstring create by - Roman!'
+    """
+    return f"This is a docstring create by - f{name}."
