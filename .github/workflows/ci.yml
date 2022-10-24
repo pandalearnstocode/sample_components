@@ -281,11 +281,11 @@ jobs:
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
-        args: --all-projects --org=sample_components --skip-unresolved --sarif-file-output=snyk-python.sarif
+        args: --all-projects --org=sample_components --skip-unresolved --sarif-file-output=snyk.sarif
     - name: Upload result to GitHub Code Scanning
       uses: github/codeql-action/upload-sarif@v2
       with:
-        sarif_file: snyk-python.sarif
+        sarif_file: snyk.sarif
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v2
       with:
