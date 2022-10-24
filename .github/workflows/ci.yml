@@ -75,13 +75,12 @@ jobs:
       run: poetry install --no-interaction --no-root
     - name: Run pylint checks here
       run: |
-        poetry run pylint $(git ls-files '*.py') -r n --msg-template="{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}" --exit-zero > pylint.log
-        PYLINT_LOG=$(cat pylint.log)
-        echo "PYLINT_LOG=$PYLINT_LOG" >> $GITHUB_ENV
+        OUTPUT=$(poetry run pylint $(git ls-files '*.py') -r n --msg-template="{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}" --exit-zero)
+        echo "MESSAGE=$OUTPUT" >> $GITHUB_ENV
     - name: Post result to PR
       uses: mshick/add-pr-comment@v1
       with:
-        message: ${{ env.PYLINT_LOG }}
+        message: ${{ env.MESSAGE }}
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         repo-token-user-login: 'github-actions[bot]'
         allow-repeats: false
