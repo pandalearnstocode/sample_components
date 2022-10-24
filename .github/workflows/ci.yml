@@ -126,6 +126,25 @@ jobs:
     - name: Install dependencies
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: poetry install --no-interaction --no-root
+    - name: Autoformat check and fix
+      run: |
+        poetry run isort --settings-path pyproject.toml ./
+        poetry run isort --diff --check-only --settings-path pyproject.toml ./
+        poetry run black --config pyproject.toml ./
+        poetry run black --diff --check --config pyproject.toml ./
+        poetry run darglint --verbosity 2 sample_components tests
+        poetry run pyupgrade --exit-zero-even-if-changed --py38-plus **/*.py
+    - name: Check for modified files
+      id: git-check
+      run: echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)
+    - name: Push changes
+      if: steps.git-check.outputs.modified == 'true'
+      run: |
+        git config --global user.name 'pandalearnstocode'
+        git config --global user.email 'pandalearnstocode@users.noreply.github.com'
+        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+        git commit -am "automated black, isort, darglint fixes"
+        git push
     - uses: psf/black@stable
       with:
         options: "--check --verbose"
