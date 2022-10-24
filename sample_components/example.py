@@ -15,7 +15,7 @@ def hello(name: str) -> str:
     return f"Hello {name}!"
 
 
-def sample_docstring(name: str) -> str:
+def sample_docstring                                                      (name: str) -> str:
     """This is a sample docstring
 
     Args:
