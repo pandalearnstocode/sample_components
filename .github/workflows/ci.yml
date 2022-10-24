@@ -160,6 +160,20 @@ jobs:
         python-version: "3.8"
     - run: |
         python --version
+    - name: Run bandit checks here
+      run: |
+        poetry run bandit --exit-zero --format json --output bandit-report.json -r sample_components tests
+        [ -s bandit-report.json ] || echo '{"error":"No bandit error found.""}' > bandit-report.json
+    - uses: actions/upload-artifact@v1
+      with:
+        name: bandit_report
+        path: bandit-report.json
+    - name: comment bandit report in PR
+      uses: machine-learning-apps/pr-comment@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        path: bandit-report.json
   formatting_checks:
     runs-on: ubuntu-latest
     needs: pr_validator
@@ -238,20 +252,6 @@ jobs:
     - name: Install dependencies
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: poetry install --no-interaction --no-root
-    - name: Run bandit checks here
-      run: |
-        poetry run bandit --exit-zero --format json --output bandit-report.json -r sample_components tests
-        [ -s bandit-report.json ] || echo '{"error":"No bandit error found.""}' > bandit-report.json
-    - uses: actions/upload-artifact@v1
-      with:
-        name: bandit_report
-        path: bandit-report.json
-    - name: comment bandit report in PR
-      uses: machine-learning-apps/pr-comment@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        path: bandit-report.json
     - name: Check safety & bandit
       run: |
         poetry check
