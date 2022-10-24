@@ -1,8 +1,11 @@
-from sample_components.example import hello_world, hello
 import pytest
+
+from sample_components.example import hello, hello_world
+
 
 def test_hello_world():
     assert hello_world("aritra") == "Hello aritra."
+
 
 @pytest.mark.parametrize(
     ("name", "expected"),
