@@ -81,10 +81,7 @@ jobs:
       with:
         name: pylintlog
         path: pylint.log
-    - uses: actions/download-artifact@v1
-      with:
-        name: pylintlog
-    - name: comment PR
+    - name: Comment pylint logs in PR
       uses: machine-learning-apps/pr-comment@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -98,10 +95,7 @@ jobs:
       with:
         name: flake8_reports
         path: flake8.txt
-    - uses: actions/download-artifact@v1
-      with:
-        name: flake8_reports
-    - name: comment PR
+    - name: comment Flake8 logs in PR
       uses: machine-learning-apps/pr-comment@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -173,10 +167,7 @@ jobs:
       with:
         name: bandit_report
         path: bandit-report.json
-    - uses: actions/download-artifact@v1
-      with:
-        name: bandit_report
-    - name: comment PR
+    - name: comment bandit report in PR
       uses: machine-learning-apps/pr-comment@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
