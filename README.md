@@ -62,7 +62,6 @@ jobs:
       run: echo "step 1"
 ```
 
-
 ```yml
 name: Release
 on:
