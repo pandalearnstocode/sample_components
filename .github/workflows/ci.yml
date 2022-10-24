@@ -91,7 +91,7 @@ jobs:
         path: pylint.log
     - name: Run flake8 checks here
       run: |
-        poetry run flake8 --exit-zero --output-file=flake8.txt sample_components tests
+        poetry run flake8 --exit-zero --output-file=flake8.txt sample_components
     - uses: actions/upload-artifact@v1
       with:
         name: flake8_reports
