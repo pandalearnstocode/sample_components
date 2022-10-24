@@ -77,7 +77,7 @@ jobs:
       run: |
         poetry run pylint $(git ls-files '*.py') -r n --msg-template="{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}" --exit-zero > pylint.log
         PYLINT_LOG=$(cat pylint.log)
-        echo "$PYLINT_LOG" >> $GITHUB_ENV
+        echo "PYLINT_LOG=$PYLINT_LOG" >> $GITHUB_ENV
     - name: Post result to PR
       uses: mshick/add-pr-comment@v1
       with:
