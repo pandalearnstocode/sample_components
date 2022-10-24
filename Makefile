@@ -115,6 +115,8 @@ pytestcache-remove:
 .PHONY: build-remove
 build-remove:
 	rm -rf build/
+	rm -rf dist/
+	rm -rf htmlcov/
 
 .PHONY: cleanup
-cleanup: pycache-remove dsstore-remove mypycache-remove ipynbcheckpoints-remove pytestcache-remove
+cleanup: pycache-remove dsstore-remove mypycache-remove ipynbcheckpoints-remove pytestcache-remove build-remove
