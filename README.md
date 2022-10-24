@@ -235,7 +235,7 @@ docker run --rm -it --entrypoint bash sample_components
 # TODO
 
 * Integrate Synk and others
-* Mkdocs
+* Mkdocs deploy
 * DVC + CML
 * Model Trigger GH Actions
 * SemVer

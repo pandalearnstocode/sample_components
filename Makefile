@@ -55,6 +55,11 @@ test:
 	PYTHONPATH=$(PYTHONPATH) poetry run coverage run -m pytest -q tests
 	PYTHONPATH=$(PYTHONPATH) poetry run coverage xml
 
+.PHONY: test-ci
+test:
+	PYTHONPATH=$(PYTHONPATH) poetry run coverage run -m pytest -q tests
+	PYTHONPATH=$(PYTHONPATH) poetry run coverage xml
+
 # NOT working: debug
 .PHONY: mypy
 mypy:

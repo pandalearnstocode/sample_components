@@ -38,9 +38,7 @@ jobs:
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: poetry install --no-interaction --no-root
     - name: Run test suite here
-      run: |
-        poetry run coverage run -m pytest -q tests
-        poetry run coverage xml
+      run: make test-ci
     - uses: actions/upload-artifact@v3
       with:
         name: coverage
