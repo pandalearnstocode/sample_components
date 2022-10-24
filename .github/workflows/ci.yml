@@ -76,6 +76,7 @@ jobs:
     - name: Run pylint checks here
       run: |
         poetry run pylint $(git ls-files '*.py') -r n --msg-template="{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}" --exit-zero > pylint.log
+        [ -s pylint.log ] || echo 'No Pylint error found..' > pylint.log
     - uses: actions/upload-artifact@v1
       with:
         name: pylintlog
@@ -91,7 +92,8 @@ jobs:
         path: pylint.log
     - name: Run flake8 checks here
       run: |
-        poetry run flake8 --exit-zero --output-file=flake8.txt sample_components
+        poetry run flake8 --exit-zero --output-file=flake8.txt sample_components tests
+        [ -s flake8.txt ] || echo 'No Flake8 error found..' > falke8.txt
     - uses: actions/upload-artifact@v1
       with:
         name: flake8_reports
@@ -135,7 +137,7 @@ jobs:
         options: "--check --verbose"
         src: "./sample_components"
         jupyter: true
-        version: "21.5b1"
+        version: "22.10"
     - name: Run formatting checks here
       run: echo "Run formatting checks here."
   security_checks:
