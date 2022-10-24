@@ -17,9 +17,6 @@ git push -u origin init
 
 ### __High level overview:__
 
-
-
-
 ```yml
 name: CI
 on:
@@ -64,7 +61,6 @@ jobs:
     - name: Notification
       run: echo "step 1"
 ```
-
 
 ```yml
 name: Release
