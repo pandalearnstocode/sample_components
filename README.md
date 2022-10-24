@@ -234,7 +234,6 @@ docker run --rm -it --entrypoint bash sample_components
 
 # TODO
 
-* Build CLI app
 * Integrate Synk and others
 * Mkdocs
 * DVC + CML
