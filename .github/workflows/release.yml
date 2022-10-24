@@ -74,4 +74,4 @@ jobs:
     needs: release
     steps:
     - name: Notify users
-      run: echo "step 1 "
+      run: echo "step 1"
