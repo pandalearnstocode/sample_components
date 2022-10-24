@@ -142,7 +142,6 @@ jobs:
       run: |
         git config --global user.name 'pandalearnstocode'
         git config --global user.email 'pandalearnstocode@users.noreply.github.com'
-        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
         git commit -am "automated black, isort, darglint fixes"
         git push
     - uses: psf/black@stable
