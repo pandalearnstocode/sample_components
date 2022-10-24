@@ -68,7 +68,7 @@ jobs:
       run: poetry install --no-interaction --no-root
     - name: Create release
       run: echo "step 1"
-    - run: mkdocs gh-deploy --force --clean --verbose
+    - run: poetry run mkdocs gh-deploy --force --clean --verbose
   notify:
     runs-on: ubuntu-latest
     needs: release
