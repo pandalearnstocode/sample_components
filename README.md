@@ -231,7 +231,6 @@ docker build -t sample_components .
 docker run --rm -it --entrypoint bash sample_components
 ```
 
-
 # TODO
 
 * Integrate Synk and others
