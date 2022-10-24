@@ -21,8 +21,8 @@
 
 <!-- Mark with an `x` all the checkboxes that apply (like `[x]`) -->
 
-- [ ] I've read the [`CODE_OF_CONDUCT.md`](https://github.com/ab-inbev-analytics/lola-algo-store-exp/blob/master/CODE_OF_CONDUCT.md) document.
-- [ ] I've read the [`CONTRIBUTING.md`](https://github.com/ab-inbev-analytics/lola-algo-store-exp/blob/master/CONTRIBUTING.md) guide.
+- [ ] I've read the [`CODE_OF_CONDUCT.md`](https://github.com/pandalearnstocode/sample_components/blob/master/CODE_OF_CONDUCT.md) document.
+- [ ] I've read the [`CONTRIBUTING.md`](https://github.com/pandalearnstocode/sample_components/blob/master/CONTRIBUTING.md) guide.
 - [ ] I've updated the code style.
 - [ ] I've written the docstring in Google format for all the methods and classes that I used.
 - [ ] I have performed a self-review of my own code

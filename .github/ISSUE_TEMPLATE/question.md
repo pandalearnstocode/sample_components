@@ -10,7 +10,7 @@ assignees:
 
 <!-- Mark with an `x` all the checkboxes that apply (like `[x]`) -->
 
-- [ ] I've searched the project's [`issues`](https://github.com/ab-inbev-analytics/lola-algo-store-exp/issues?q=is%3Aissue).
+- [ ] I've searched the project's [`issues`](https://github.com/pandalearnstocode/sample_components/issues?q=is%3Aissue).
 
 ## ❓ Question
 
