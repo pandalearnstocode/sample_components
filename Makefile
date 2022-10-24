@@ -56,7 +56,7 @@ test:
 	PYTHONPATH=$(PYTHONPATH) poetry run coverage xml
 
 .PHONY: test-ci
-test:
+test-ci:
 	PYTHONPATH=$(PYTHONPATH) poetry run coverage run -m pytest -q tests
 	PYTHONPATH=$(PYTHONPATH) poetry run coverage xml
 
