@@ -17,6 +17,8 @@ jobs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
+        repository: ${{ github.event.pull_request.head.repo.full_name }}
+        ref: ${{ github.event.pull_request.head.ref }}
     - uses: actions/setup-python@v4
       with:
         python-version: '3.8'
@@ -53,6 +55,8 @@ jobs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
+        repository: ${{ github.event.pull_request.head.repo.full_name }}
+        ref: ${{ github.event.pull_request.head.ref }}
     - uses: actions/setup-python@v4
       with:
         python-version: '3.8'
@@ -134,17 +138,6 @@ jobs:
         poetry run black --diff --check --config pyproject.toml ./
         poetry run darglint --verbosity 2 sample_components tests
         poetry run pyupgrade --exit-zero-even-if-changed --py38-plus **/*.py
-    - name: Check for modified files
-      id: git-check
-      run: echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)
-    - name: Commit changes
-      if: steps.git-check.outputs.modified == 'true'
-      uses: EndBug/add-and-commit@v9
-      with:
-        author_name: pandalearnstocode
-        author_email: pandalearnstocode@users.noreply.github.com
-        message: 'automated black, isort, darglint fixes'
-        add: '*.py'
     - uses: psf/black@stable
       with:
         options: "--check --verbose"
@@ -160,6 +153,8 @@ jobs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
+        repository: ${{ github.event.pull_request.head.repo.full_name }}
+        ref: ${{ github.event.pull_request.head.ref }}
     - uses: actions/setup-python@v4
       with:
         python-version: '3.8'
@@ -199,6 +194,8 @@ jobs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
+        repository: ${{ github.event.pull_request.head.repo.full_name }}
+        ref: ${{ github.event.pull_request.head.ref }}
     - uses: actions/download-artifact@v3
     - name: Publish Sonar Cloud Result
       uses: SonarSource/sonarcloud-github-action@master
