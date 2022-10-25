@@ -1938,7 +1938,7 @@ pbr = ">=2.0.0,<2.1.0 || >2.1.0"
 
 [[package]]
 name = "terminado"
-version = "0.16.0"
+version = "0.17.0"
 description = "Tornado websocket backend for the Xterm.js Javascript terminal emulator library."
 category = "main"
 optional = false
@@ -1950,7 +1950,8 @@ pywinpty = {version = ">=1.1.0", markers = "os_name == \"nt\""}
 tornado = ">=6.1.0"
 
 [package.extras]
-test = ["pre-commit", "pytest (>=6.0)", "pytest-timeout"]
+docs = ["pydata-sphinx-theme", "sphinx"]
+test = ["pre-commit", "pytest (>=7.0)", "pytest-timeout"]
 
 [[package]]
 name = "tinycss2"
@@ -3311,8 +3312,8 @@ stevedore = [
     {file = "stevedore-4.1.0.tar.gz", hash = "sha256:02518a8f0d6d29be8a445b7f2ac63753ff29e8f2a2faa01777568d5500d777a6"},
 ]
 terminado = [
-    {file = "terminado-0.16.0-py3-none-any.whl", hash = "sha256:3e995072a7178a104c41134548ce9b03e4e7f0a538e9c29df4f1fbc81c7cfc75"},
-    {file = "terminado-0.16.0.tar.gz", hash = "sha256:fac14374eb5498bdc157ed32e510b1f60d5c3c7981a9f5ba018bb9a64cec0c25"},
+    {file = "terminado-0.17.0-py3-none-any.whl", hash = "sha256:bf6fe52accd06d0661d7611cc73202121ec6ee51e46d8185d489ac074ca457c2"},
+    {file = "terminado-0.17.0.tar.gz", hash = "sha256:520feaa3aeab8ad64a69ca779be54be9234edb2d0d6567e76c93c2c9a4e6e43f"},
 ]
 tinycss2 = [
     {file = "tinycss2-1.2.1-py3-none-any.whl", hash = "sha256:2b80a96d41e7c3914b8cda8bc7f705a4d9c49275616e886103dd839dfc847847"},
