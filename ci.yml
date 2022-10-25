@@ -298,6 +298,12 @@ jobs:
         repository: ${{ github.event.pull_request.head.repo.full_name }}
         ref: ${{ github.event.pull_request.head.ref }}
     - uses: actions/download-artifact@v3
+    - name: Download pylint log here and put in path
+      run: echo "Download pylint log here and put in path"
+    - name: Download flake8 log here and put in path
+      run: echo "Download flake8 log here and put in path"
+    - name: Download bandit log here and put in path
+      run: echo "Download bandit log here and put in path"
     - name: Publish Sonar Cloud Result
       uses: SonarSource/sonarcloud-github-action@master
       env:

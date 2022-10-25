@@ -242,3 +242,4 @@ docker run --rm -it --entrypoint bash sample_components
 * Extensions and settings
 * Smoke test
 * Notification
+* Sonar Update: pylint, flake8 and bandit

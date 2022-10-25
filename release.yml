@@ -36,6 +36,12 @@ jobs:
         poetry run coverage xml
         mkdir coverage
         cp coverage.xml coverage/coverage.xml
+    - name: Run pylint here and put in path
+      run: echo "Run pylint here and put in path"
+    - name: Run flake8 here and put in path
+      run: echo "Run flake8 here and put in path"
+    - name: Run bandit here and put in path
+      run: echo "Run bandit here and put in path"
     - name: Publish Sonar Cloud Result
       uses: SonarSource/sonarcloud-github-action@master
       env:
