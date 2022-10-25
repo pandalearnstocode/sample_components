@@ -240,4 +240,4 @@ docker run --rm -it --entrypoint bash sample_components
 * SemVer
 * devontainer + remote + codespaces
 * Extensions and settings
-
+* Smoke test
