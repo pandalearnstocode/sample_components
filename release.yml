@@ -30,6 +30,8 @@ jobs:
     - name: Install dependencies
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: poetry install --no-interaction --no-root
+    - name: Download data from DVC for test execution
+      run: echo "Download data from dvc for test execution"
     - name: Run test suite here
       run: |
         poetry run coverage run -m pytest -q tests
@@ -72,12 +74,25 @@ jobs:
     - name: Install dependencies
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: poetry install --no-interaction --no-root
-    - name: Create release
-      run: echo "step 1"
+    - name: Run release drafter (optional)
+      run: echo "Run release drafter (optional)"
+    - name: Run semantic release
+      run: echo "Run semantic release"
+    - name: Run smoke tests in docker to ensure docker build is working
+      run: echo "Run smoke tests in docker to ensure docker build is working"
+    - name: Login to azure using SPN to access ACR & build, push docker image with latest and current tag
+      run: echo "Login to azure using SPN to access ACR & build, push docker image  with latest and current tag"
+    - name: Login to jfrog using service account, create wheel file with latest and current tag and push
+      run: echo "Login to jfrog using service account, create wheel file with latest and current tag and push"
+    - name: Deploy wiki
     - run: poetry run mkdocs gh-deploy --force --clean --verbose
   notify:
     runs-on: ubuntu-latest
     needs: release
     steps:
-    - name: Notify users
-      run: echo "step 1"
+    - name: Publish result to CMS
+      run: echo "Publish result to CMS"
+    - name: Notify users via email
+      run: echo "Notify users via email"
+    - name: Notify users via teams channel
+      run: echo "Notify users via teams channel"
