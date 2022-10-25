@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Validate branch name
+        if: ${{ github.actor != 'dependabot[bot]' }}
         uses: deepakputhraya/action-branch-name@master
         with:
           regex: '^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)\/AB\#[0-9]{5}\-[a-zA-Z0-9-/]+$'
@@ -22,6 +23,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: amannn/action-semantic-pull-request@v5
+        if: ${{ github.actor != 'dependabot[bot]' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -146,6 +148,34 @@ jobs:
         path: flake8.txt
     - name: Run static typing with mypy
       run: poetry run mypy --config-file pyproject.toml ./
+    - uses: marian-code/python-lint-annotate@v3
+      with:
+        python-root-list: "sample_components/ tests/*"
+        use-black: true
+        use-isort: true
+        use-mypy: true
+        use-pycodestyle: false
+        use-pydocstyle: true
+        use-pylint: true
+        use-flake8: true
+        use-vulture: true
+        python-version: "3.8"
+    - run: |
+        python --version
+    - name: Run bandit checks here
+      run: |
+        poetry run bandit --exit-zero --format json --output bandit-report.json -r sample_components tests
+        [ -s bandit-report.json ] || echo '{"error":"No bandit error found.""}' > bandit-report.json
+    - uses: actions/upload-artifact@v1
+      with:
+        name: bandit_report
+        path: bandit-report.json
+    - name: comment bandit report in PR
+      uses: machine-learning-apps/pr-comment@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        path: bandit-report.json
   formatting_checks:
     runs-on: ubuntu-latest
     needs: pr_validator
@@ -155,6 +185,19 @@ jobs:
         fetch-depth: 0
         repository: ${{ github.event.pull_request.head.repo.full_name }}
         ref: ${{ github.event.pull_request.head.ref }}
+    - name: Run Snyk to check for vulnerabilities
+      uses: snyk/actions/python-3.8@master
+      continue-on-error: true
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        args: --sarif-file-output=snyk.sarif --file=poetry.lock --package-manager=poetry
+    - name: Upload result to GitHub Code Scanning
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: snyk.sarif
+    - name: Run formatting checks here
+      run: echo "Run formatting checks here."
     - uses: actions/setup-python@v4
       with:
         python-version: '3.8'
@@ -187,10 +230,16 @@ jobs:
         src: "./sample_components"
         jupyter: true
         version: "22.10"
-    - name: Run formatting checks here
-      run: echo "Run formatting checks here."
   security_checks:
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'python' ]
     needs: pr_validator
     steps:
     - uses: actions/checkout@v3
@@ -216,20 +265,6 @@ jobs:
     - name: Install dependencies
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: poetry install --no-interaction --no-root
-    - name: Run bandit checks here
-      run: |
-        poetry run bandit --exit-zero --format json --output bandit-report.json -r sample_components tests
-        [ -s bandit-report.json ] || echo '{"error":"No bandit error found.""}' > bandit-report.json
-    - uses: actions/upload-artifact@v1
-      with:
-        name: bandit_report
-        path: bandit-report.json
-    - name: comment bandit report in PR
-      uses: machine-learning-apps/pr-comment@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        path: bandit-report.json
     - name: Check safety & bandit
       run: |
         poetry check
@@ -239,6 +274,20 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
+    - name: Build a Docker image
+      run: docker build -t your/image-to-test .
+    - name: Run Snyk to check Docker image for vulnerabilities
+      continue-on-error: true
+      uses: snyk/actions/docker@14818c4695ecc4045f33c9cee9e795a788711ca4
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        image: your/image-to-test
+        args: --file=Dockerfile
+    - name: Upload result to GitHub Code Scanning
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: snyk.sarif
   notify:
     runs-on: ubuntu-latest
     needs: [test_suite, linting_checks, formatting_checks, security_checks]
@@ -254,5 +303,15 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v2
+      with:
+        languages: ${{ matrix.language }}
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v2
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v2
+      with:
+        category: "/language:${{matrix.language}}"
     - name: Send notifications here
       run: echo "Send notifications here."
