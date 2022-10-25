@@ -234,12 +234,10 @@ docker run --rm -it --entrypoint bash sample_components
 
 # TODO
 
-* Integrate Synk and others
-* Mkdocs deploy
+* Checkmarx, gitleaks, jfrog, ACR, CMS
 * DVC + CML
-* Model Trigger GH Actions
+* Model Trigger GH Actions (workflow + API)
 * SemVer
-* Dependabots, security
 * devontainer + remote + codespaces
 * Extensions and settings
 
