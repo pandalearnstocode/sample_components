@@ -241,3 +241,4 @@ docker run --rm -it --entrypoint bash sample_components
 * devontainer + remote + codespaces
 * Extensions and settings
 * Smoke test
+* Notification
