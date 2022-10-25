@@ -8,7 +8,7 @@ updates:
     allow:
       - dependency-type: "all"
     commit-message:
-      prefix: "fix: [Python]"
+      prefix: "fix"
     open-pull-requests-limit: 50
 
   - package-ecosystem: "github-actions"
@@ -18,7 +18,7 @@ updates:
     allow:
       - dependency-type: "all"
     commit-message:
-      prefix: "fix: [actions]"
+      prefix: "fix"
     open-pull-requests-limit: 50
 
   - package-ecosystem: "docker"
@@ -28,5 +28,5 @@ updates:
     allow:
       - dependency-type: "all"
     commit-message:
-      prefix: "fix: [docker]"
+      prefix: "fix"
     open-pull-requests-limit: 50
