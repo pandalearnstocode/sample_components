@@ -13,7 +13,7 @@ jobs:
         uses: deepakputhraya/action-branch-name@master
         with:
           regex: '^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)\/AB\#[0-9]{5}\-[a-zA-Z0-9-/]+$'
-          allowed_prefixes: 'feat,fix,docs,style,refactor,perf,test,build,ci,chore,revert'
+          allowed_prefixes: 'feat,fix,docs,style,refactor,perf,tests,build,ci,chore,revert'
           ignore: master,staging,develop, init
           min_length: 5
           max_length: 50
@@ -34,7 +34,7 @@ jobs:
             style
             refactor
             perf
-            test
+            tests
             build
             ci
             chore

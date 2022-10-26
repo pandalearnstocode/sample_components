@@ -80,6 +80,8 @@ jobs:
     - name: Install dependencies
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: poetry install --no-interaction --no-root
+    - name: Download data from DVC for test execution
+      run: echo "Download data from dvc for test execution"
     - name: Run test suite here
       run: make test-ci
     - uses: actions/upload-artifact@v3
@@ -274,6 +276,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
+    - name: Run checkmarx here
+      run: echo "Run checkmarx here"
     - name: Build a Docker image
       run: docker build -t your/image-to-test .
     - name: Run Snyk to check Docker image for vulnerabilities
@@ -298,6 +302,14 @@ jobs:
         repository: ${{ github.event.pull_request.head.repo.full_name }}
         ref: ${{ github.event.pull_request.head.ref }}
     - uses: actions/download-artifact@v3
+    - name: Display structure of downloaded files
+      run: ls -R
+    - name: Download pylint log here and put in path
+      run: echo "Download pylint log here and put in path"
+    - name: Download flake8 log here and put in path
+      run: echo "Download flake8 log here and put in path"
+    - name: Download bandit log here and put in path
+      run: echo "Download bandit log here and put in path"
     - name: Publish Sonar Cloud Result
       uses: SonarSource/sonarcloud-github-action@master
       env:
@@ -313,5 +325,9 @@ jobs:
       uses: github/codeql-action/analyze@v2
       with:
         category: "/language:${{matrix.language}}"
-    - name: Send notifications here
-      run: echo "Send notifications here."
+    - name: Use DVC and CML to compare result between working and main branch, attach as pr comment and mail
+      run: echo "Use DVC and CML to compare result between working and main branch, attach as pr comment and mail"
+    - name: Notify users via email
+      run: echo "Notify users via email"
+    - name: Notify users via teams channel
+      run: echo "Notify users via teams channel"
