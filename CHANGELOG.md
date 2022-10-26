@@ -2,6 +2,9 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.1 (2022-10-26)
+
+
 ## v0.3.0 (2022-10-26)
 ### Feature
 * AB#12345 update in read me ([#43](https://github.com/pandalearnstocode/sample_components/issues/43)) ([`f4a4d98`](https://github.com/pandalearnstocode/sample_components/commit/f4a4d9806ad91c6860870c2e952c3f9e582f6cbc))
