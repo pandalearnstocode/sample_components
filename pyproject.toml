@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sample_components"
-version = "0.0.0"
+version = "0.1.0"
 description = ""
 authors = ["Aritra Biswas <40533894+pandalearnstocode@users.noreply.github.com>"]
 readme = "README.md"
