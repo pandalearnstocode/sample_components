@@ -76,8 +76,13 @@ jobs:
       run: poetry install --no-interaction --no-root
     - name: Run release drafter (optional)
       run: echo "Run release drafter (optional)"
-    - name: Run semantic release
-      run: echo "Run semantic release"
+    - name: Use Python Semantic Release to prepare release
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          poetry run semantic-release publish
     - name: Run smoke tests in docker to ensure docker build is working
       run: echo "Run smoke tests in docker to ensure docker build is working"
     - name: Login to azure using SPN to access ACR & build, push docker image with latest and current tag

@@ -36,7 +36,6 @@ mkdocs-material = "^8.5.7"
 mkdocstrings-python = "^0.7.1"
 mike = "^1.1.2"
 mkdocs = "^1.4.1"
-commitizen = "^2.35.0"
 
 [tool.poetry.scripts]
 "sample_components" = "sample_components.__main__:app"
@@ -137,7 +136,7 @@ exclude = ".venv"
 
 [tool.semantic_release]
 version_variable = "pyproject.toml:version" # version location
-branch = "master"                             # branch to make releases of
+branch = "init"                             # branch to make releases of
 changelog_file = "CHANGELOG.md"             # changelog file
 build_command = "poetry build"              # build dists
 dist_path = "dist/"                         # where to put dists
