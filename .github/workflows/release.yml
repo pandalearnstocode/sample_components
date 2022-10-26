@@ -85,10 +85,6 @@ jobs:
         key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}-${{ hashFiles('**/pyproject.toml') }}
     - name: Install dependencies
       run: poetry install --no-interaction --no-root
-    - name: Generate release note
-      uses: release-drafter/release-drafter@v5.15.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Use Python Semantic Release to prepare release
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
