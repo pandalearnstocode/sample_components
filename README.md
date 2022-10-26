@@ -234,10 +234,10 @@ docker run --rm -it --entrypoint bash sample_components
 
 # TODO
 
-* Checkmarx, gitleaks, jfrog, ACR, CMS
+* Checkmarx, gitleaks, jfrog, ACR, CMS: place holder
 * DVC + CML
 * Model Trigger GH Actions (workflow + API)
-* SemVer
+* SemVer: done
 * devontainer + remote + codespaces
 * Extensions and settings
 * Smoke test
