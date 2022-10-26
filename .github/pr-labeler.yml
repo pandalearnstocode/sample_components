@@ -4,7 +4,7 @@ docs: docs/*
 style: style/*
 refactor: refactor/*
 perf: perf/*
-test: test/*
+tests: tests/*
 build: build/*
 ci: ci/*
 chore: chore/*
