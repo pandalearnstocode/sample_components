@@ -86,6 +86,10 @@ jobs:
     - name: Install dependencies
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: poetry install --no-interaction --no-root
+    - name: Generate release note
+      uses: release-drafter/release-drafter@v5.15.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Create release
       run: echo "step 1"
     - run: poetry run mkdocs gh-deploy --force --clean --verbose
