@@ -4,7 +4,6 @@
 * [Sub component 1](https://github.com/pandalearnstocode/sample_subcomponents_1)
 * [Sub component 2](https://github.com/pandalearnstocode/sample_subcomponents_2)
 
-
 ## __Setup__
 ```bash
 git init
@@ -17,6 +16,7 @@ git push -u origin init
 ## __GitHub actions:__
 
 ### __High level overview:__
+
 
 
 ```yml
