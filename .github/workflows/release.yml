@@ -36,6 +36,26 @@ jobs:
         poetry run coverage xml
         mkdir coverage
         cp coverage.xml coverage/coverage.xml
+    - name: Run pylint checks here
+      run: |
+        poetry run pylint $(git ls-files '*.py') -r n --msg-template="{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}" --exit-zero > pylint.log
+        [ -s pylint.log ] || echo 'No Pylint error found..' > pylint.log
+        mkdir pylintlog
+        cp pylint.log pylintlog/pylint.log
+    - name: Run flake8 checks here
+      run: |
+        poetry run flake8 --exit-zero --output-file=flake8.txt sample_components tests
+        [ -s flake8.txt ] || echo 'No Flake8 error found..' > flake8.txt
+        mkdir flake8_reports
+        cp flake8.txt flake8_reports/flake8.txt
+    - name: Run bandit checks here
+      run: |
+        poetry run bandit --exit-zero --format json --output bandit-report.json -r sample_components tests
+        [ -s bandit-report.json ] || echo '{"error":"No bandit error found.""}' > bandit-report.json
+        mkdir bandit_report
+        cp bandit-report.json bandit_report/bandit-report.json
+    - name: Display structure of downloaded files
+      run: ls -R
     - name: Publish Sonar Cloud Result
       uses: SonarSource/sonarcloud-github-action@master
       env:
