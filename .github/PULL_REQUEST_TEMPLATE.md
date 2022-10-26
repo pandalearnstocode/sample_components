@@ -33,4 +33,5 @@
 - [ ] New and existing unit tests pass locally with my changes
 - [ ] Any dependent changes have been merged and published in downstream modules
 - [ ] I have checked my code and corrected any misspellings
-- [ ] I have updated any dependency I'have used in `poetry.lock` and `pyproject.toml` file using `poetry add`. I have categorized `dev` and `main` dependency.
+- [ ] I have updated dependencies in `poetry.lock` and `pyproject.toml` using `poetry add`.
+- [ ] I have categorized `dev` and `main` dependency.
