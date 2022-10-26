@@ -117,5 +117,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: release
     steps:
-    - name: Notify users
-      run: echo "step 1"
+    - name: Publish result to CMS
+      run: echo "Publish result to CMS"
+    - name: Notify users via email
+      run: echo "Notify users via email"
+    - name: Notify users via teams channel
+      run: echo "Notify users via teams channel"
