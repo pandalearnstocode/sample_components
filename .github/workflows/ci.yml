@@ -326,7 +326,7 @@ jobs:
       with:
         category: "/language:${{matrix.language}}"
     - name: Generate release note
-      uses: release-drafter/release-drafter@v5.15.0
+      uses: release-drafter/release-drafter@v5.21.1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Use DVC and CML to compare result between working and main branch, attach as pr comment and mail
