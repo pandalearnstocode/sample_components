@@ -17,7 +17,7 @@ jobs:
           ignore: master,staging,develop, init
           min_length: 5
           max_length: 50
-      - uses: TimonVS/pr-labeler-action@v3
+      - uses: TimonVS/pr-labeler-action@v4
         with:
           configuration-path: .github/pr-labeler.yml
         env:
