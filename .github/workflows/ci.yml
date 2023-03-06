@@ -124,7 +124,7 @@ jobs:
       run: |
         poetry run pylint $(git ls-files '*.py') -r n --msg-template="{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}" --exit-zero > pylint.log
         [ -s pylint.log ] || echo 'No Pylint error found..' > pylint.log
-    - uses: actions/upload-artifact@v1
+    - uses: actions/upload-artifact@v3
       with:
         name: pylintlog
         path: pylint.log
@@ -138,7 +138,7 @@ jobs:
       run: |
         poetry run flake8 --exit-zero --output-file=flake8.txt sample_components tests
         [ -s flake8.txt ] || echo 'No Flake8 error found..' > flake8.txt
-    - uses: actions/upload-artifact@v1
+    - uses: actions/upload-artifact@v3
       with:
         name: flake8_reports
         path: flake8.txt
@@ -168,7 +168,7 @@ jobs:
       run: |
         poetry run bandit --exit-zero --format json --output bandit-report.json -r sample_components tests
         [ -s bandit-report.json ] || echo '{"error":"No bandit error found.""}' > bandit-report.json
-    - uses: actions/upload-artifact@v1
+    - uses: actions/upload-artifact@v3
       with:
         name: bandit_report
         path: bandit-report.json
